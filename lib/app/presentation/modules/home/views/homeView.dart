@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../../../global/platformUtils.dart';
 import '../controller/homeController.dart';
 import '../cubit/homeCubit.dart';
 import '../state/homeState.dart';
+import 'homeViewDesk.dart';
+import 'homeViewMobile.dart';
+import 'homeViewWeb.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -33,11 +37,12 @@ class _HomeViewState extends State<HomeView> {
                 onRefresh: context.read<HomeController>().init,
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: SizedBox(
-                    height: constraints.maxHeight,
-                    child: const Column(
-                      children: [Text("HomeView")],
-                    ),
+                  child: Stack(
+                    children: [
+                      if (PlatformUtils.isWeb) HomeViewWeb(),
+                      if (PlatformUtils.isMobile) HomeViewMobile(),
+                      if (PlatformUtils.isDesktop) HomeViewDesk()
+                    ],
                   ),
                 ),
               ),
