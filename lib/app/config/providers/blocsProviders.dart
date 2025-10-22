@@ -6,6 +6,9 @@ import 'package:provider/single_child_widget.dart';
 import '../../presentation/modules/home/controller/homeController.dart';
 import '../../presentation/modules/home/cubit/homeCubit.dart';
 import '../../presentation/modules/home/state/homeState.dart';
+import '../../presentation/modules/onboarding/controller/onboardingController.dart';
+import '../../presentation/modules/onboarding/cubit/onboardingCubit.dart';
+import '../../presentation/modules/onboarding/state/onboardingState.dart';
 import '../../presentation/myApp.dart';
 import '../router/routerSimpleCubit.dart';
 
@@ -29,6 +32,9 @@ class BlocsProviders extends StatelessWidget {
       BlocProvider(
         create: (context) => HomeCubit(HomeState()),
       ),
+      BlocProvider(
+        create: (context) => OnboardingCubit(OnboardingState()),
+      ),
     ];
   }
 
@@ -36,6 +42,9 @@ class BlocsProviders extends StatelessWidget {
     return [
       ChangeNotifierProvider<HomeController>(
         create: (context) => HomeController(HomeState()),
+      ),
+      ChangeNotifierProvider<OnboardingController>(
+        create: (context) => OnboardingController(OnboardingState()),
       ),
     ];
   }

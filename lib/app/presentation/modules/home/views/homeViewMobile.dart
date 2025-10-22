@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../config/theme/text_styles.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class HomeViewMobile extends StatefulWidget {
   const HomeViewMobile({super.key});
@@ -13,7 +14,7 @@ class _HomeViewMobileState extends State<HomeViewMobile> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Título Principal',
+      context.l10n.clearFilter,
       style: AppTextStyles.poppinsMedium32,
       textAlign: TextAlign.center,
     );
