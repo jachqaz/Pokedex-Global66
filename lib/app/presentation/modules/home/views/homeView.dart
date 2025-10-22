@@ -25,11 +25,6 @@ class _HomeViewState extends State<HomeView> {
         HomeState(),
       )..init(),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 1,
-          actions: [],
-        ),
         body: BlocBuilder<HomeCubit, Object>(
           builder: (context, state) => SafeArea(
             child: LayoutBuilder(
@@ -37,12 +32,15 @@ class _HomeViewState extends State<HomeView> {
                 onRefresh: context.read<HomeController>().init,
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: Stack(
-                    children: [
-                      if (PlatformUtils.isWeb) HomeViewWeb(),
-                      if (PlatformUtils.isMobile) HomeViewMobile(),
-                      if (PlatformUtils.isDesktop) HomeViewDesk()
-                    ],
+                  child: SizedBox(
+                    height: constraints.maxHeight,
+                    child: Stack(
+                      children: [
+                        if (PlatformUtils.isWeb) HomeViewWeb(),
+                        if (PlatformUtils.isMobile) HomeViewMobile(),
+                        if (PlatformUtils.isDesktop) HomeViewDesk()
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -10,8 +10,8 @@ import 'routes.dart';
 
 mixin RouterMixin on State<MyApp> {
   final _router = GoRouter(
-    initialLocation: Paths.root,
-    errorBuilder: (_, state) => HomeView(),
+    initialLocation: Paths.onboarding,
+    errorBuilder: (_, state) => OnboardingView(),
     routes: [
       GoRoute(
         name: Routes.home,

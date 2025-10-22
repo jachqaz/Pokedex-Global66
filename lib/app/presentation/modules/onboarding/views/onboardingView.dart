@@ -25,11 +25,6 @@ class _OnboardingViewState extends State<OnboardingView> {
         OnboardingState(),
       )..init(),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 1,
-          actions: [],
-        ),
         body: BlocBuilder<OnboardingCubit, Object>(
           builder: (context, state) => SafeArea(
             child: LayoutBuilder(
@@ -37,12 +32,15 @@ class _OnboardingViewState extends State<OnboardingView> {
                 onRefresh: context.read<OnboardingController>().init,
                 child: SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  child: Stack(
-                    children: [
-                      if (PlatformUtils.isWeb) OnboardingViewWeb(),
-                      if (PlatformUtils.isMobile) OnboardingViewMobile(),
-                      if (PlatformUtils.isDesktop) OnboardingViewDesk()
-                    ],
+                  child: SizedBox(
+                    height: constraints.maxHeight,
+                    child: Stack(
+                      children: [
+                        if (PlatformUtils.isWeb) OnboardingViewWeb(),
+                        if (PlatformUtils.isMobile) OnboardingViewMobile(),
+                        if (PlatformUtils.isDesktop) OnboardingViewDesk()
+                      ],
+                    ),
                   ),
                 ),
               ),
