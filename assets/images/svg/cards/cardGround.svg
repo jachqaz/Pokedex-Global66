@@ -1,0 +1,18 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="126" height="102" viewBox="0 0 126 102" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+    <rect width="126" height="102" rx="16" fill="#FDD835"/>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M37.0949 84.7161C37.0694 84.7161 37.0516 84.6911 37.06 84.6671L61.0586 17.0441C61.0639 17.0294 61.0779 17.0195 61.0935 17.0195H86.7126C86.7282 17.0195 86.7423 17.0294 86.7475 17.0442L110.39 84.6673C110.398 84.6912 110.381 84.7161 110.355 84.7161H37.8161H37.0949ZM16.429 84.9807C16.4033 84.9807 16.3854 84.9551 16.3945 84.9311L34.2655 37.3523C34.2709 37.3378 34.2847 37.3283 34.3001 37.3283H49.8279C49.8536 37.3283 49.8715 37.3537 49.8626 37.3777L32.5819 84.9565C32.5766 84.971 32.5627 84.9807 32.5472 84.9807H16.429Z"
+          fill="url(#paint0_linear_9_1802)"/>
+    <rect x="16" y="4" width="94" height="94" fill="url(#pattern0_9_1802)"/>
+    <defs>
+        <pattern id="pattern0_9_1802" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#image0_9_1802" transform="translate(-0.0520833 -0.0520833) scale(0.0115017)"/>
+        </pattern>
+        <linearGradient id="paint0_linear_9_1802" x1="6.98372" y1="22.1158" x2="49.7688" y2="114.79"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="white"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+</svg>
