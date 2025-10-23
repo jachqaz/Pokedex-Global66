@@ -49,7 +49,7 @@ class _PokemonCardState extends State<PokemonCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'N°${widget.pokemon.id}',
+                      'N°${widget.pokemon.id.toString().padLeft(3, '0')}',
                       style: AppTextStyles.poppinsSemiBold12.copyWith(
                         color: AppColors.textCard,
                       ),
