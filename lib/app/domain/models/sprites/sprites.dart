@@ -10,14 +10,14 @@ part 'sprites.g.dart';
 @freezed
 abstract class Sprites with _$Sprites {
   factory Sprites({
-    required String? backDefault,
-    String? backFemale,
-    required String? backShiny,
-    String? backShinyFemale,
-    required String? frontDefault,
-    String? frontFemale,
-    required String? frontShiny,
-    String? frontShinyFemale,
+    @JsonKey(name: 'back_default') required String? backDefault,
+    @JsonKey(name: 'back_female') String? backFemale,
+    @JsonKey(name: 'back_shiny') required String? backShiny,
+    @JsonKey(name: 'back_shiny_female') String? backShinyFemale,
+    @JsonKey(name: 'front_default') required String? frontDefault,
+    @JsonKey(name: 'front_female') String? frontFemale,
+    @JsonKey(name: 'front_shiny') required String? frontShiny,
+    @JsonKey(name: 'front_shiny_female') String? frontShinyFemale,
     required OtherSprites other,
     required SpritesVersions versions,
   }) = _Sprites;

@@ -1,0 +1,18 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="126" height="102" viewBox="0 0 126 102" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+    <rect width="126" height="102" rx="16" fill="#E53935"/>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M32.5099 11.8148C33.6509 7.3233 37.7323 4 42.5921 4C46.2373 4 49.4447 5.86985 51.3017 8.7H54.3426C56.2318 6.76705 58.8713 5.56667 61.7921 5.56667C66.0743 5.56667 69.7522 8.14705 71.3466 11.8333H73.8925C75.4878 10.8404 77.3728 10.2667 79.392 10.2667C83.6745 10.2667 87.3521 12.8471 88.9465 16.5333H95.8697C95.9288 16.5333 95.9843 16.5492 96.032 16.5769C96.3481 16.5481 96.6684 16.5333 96.9919 16.5333C102.736 16.5333 107.392 21.1755 107.392 26.9019V57.9924L107.392 58.05L107.392 58.1076V58.5554C107.392 58.7451 107.387 58.934 107.376 59.122C106.751 80.6902 87.2978 98 63.392 98C39.0915 98 19.3921 80.1137 19.3921 58.05C19.3921 47.3999 23.9821 37.7231 31.4639 30.5614C31.4452 40.9442 31.6211 51.6782 32.432 51.4941C34.6032 51.0006 32.9068 18.8416 32.5099 11.8148Z"
+          fill="url(#paint0_linear_9_1699)"/>
+    <rect x="16" y="4" width="94" height="94" fill="url(#pattern0_9_1699)"/>
+    <defs>
+        <pattern id="pattern0_9_1699" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#image0_9_1699" transform="translate(-0.0520833 -0.0520833) scale(0.0115017)"/>
+        </pattern>
+        <linearGradient id="paint0_linear_9_1699" x1="10.5843" y1="11.0489" x2="82.9727" y2="117.175"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="white"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+</svg>

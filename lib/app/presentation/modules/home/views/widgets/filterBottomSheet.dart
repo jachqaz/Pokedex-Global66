@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../global/enums.dart';
+import '../../../../global/extensions.dart';
 
 class FilterBottomSheet extends StatefulWidget {
   final List<String> selectedTypes;
@@ -24,27 +26,19 @@ class FilterBottomSheetState extends State<FilterBottomSheet> {
   late List<String> _selectedTypes;
   bool _isTypeExpanded = true;
 
-  final List<String> allTypes = [
-    'Agua',
-    'Dragón',
-    'Eléctrico',
-    'Hada',
-    'Fantasma',
-    'Fuego'
-  ];
-
   @override
   void initState() {
     super.initState();
     _selectedTypes = List.from(widget.selectedTypes);
   }
 
-  void _toggleTypeSelection(String type) {
+  void _toggleTypeSelection(String spanishType) {
+    final englishType = TypeTranslator.toEnglish(spanishType);
     setState(() {
-      if (_selectedTypes.contains(type)) {
-        _selectedTypes.remove(type);
+      if (_selectedTypes.contains(englishType)) {
+        _selectedTypes.remove(englishType);
       } else {
-        _selectedTypes.add(type);
+        _selectedTypes.add(englishType);
       }
     });
   }
@@ -140,20 +134,22 @@ class FilterBottomSheetState extends State<FilterBottomSheet> {
                 shrinkWrap: true,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                itemCount: allTypes.length,
+                itemCount: TipoPokemon.values.length,
                 itemBuilder: (context, index) {
-                  final type = allTypes[index];
-                  final isSelected = _selectedTypes.contains(type);
+                  final type = TipoPokemon.values[index];
+                  final spanishName = type.name;
+                  final englishName = TypeTranslator.toEnglish(spanishName);
+                  final isSelected = _selectedTypes.contains(englishName);
 
                   return InkWell(
-                    onTap: () => _toggleTypeSelection(type),
+                    onTap: () => _toggleTypeSelection(spanishName),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       child: Row(
                         children: [
                           Expanded(
                             child: Text(
-                              type,
+                              spanishName,
                               style: AppTextStyles.poppinsRegular14.copyWith(
                                 color: AppColors.black,
                                 fontSize: 16,

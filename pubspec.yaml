@@ -59,6 +59,7 @@ dependencies:
   riverpod: ^2.4.9
   flutter_native_splash: ^2.4.7
   flutter_launcher_icons: ^0.14.4
+  cached_network_image: ^3.4.1
 
 
 dev_dependencies:
@@ -101,6 +102,7 @@ flutter:
     - assets/images/png/
     - assets/images/png/pokemons/
     - assets/images/svg/
+    - assets/images/svg/cards/
     - assets/images/svg/icons/
     - assets/images/svg/icons/favorites/
     - assets/images/svg/icons/items/
