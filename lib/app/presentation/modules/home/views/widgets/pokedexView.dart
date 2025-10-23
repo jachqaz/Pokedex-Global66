@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../config/providers/riverpod_providers.dart';
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
 import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../generated/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../cubit/homeCubit.dart';
-import '../../state/homeState.dart';
 import 'filterBottomSheet.dart';
 import 'pokemonCard.dart';
 import 'searchWidget.dart';
 import 'templateWidget.dart';
 
-class PokedexView extends StatefulWidget {
+class PokedexView extends ConsumerStatefulWidget {
   const PokedexView({super.key});
 
   @override
-  State<PokedexView> createState() => _PokedexViewState();
+  ConsumerState<PokedexView> createState() => _PokedexViewState();
 }
 
-class _PokedexViewState extends State<PokedexView>
+class _PokedexViewState extends ConsumerState<PokedexView>
     with SingleTickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
   List<Pokemon> _filteredPokemonList = [];
@@ -31,13 +30,10 @@ class _PokedexViewState extends State<PokedexView>
   void initState() {
     super.initState();
     _searchController.addListener(_onSearchChanged);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<HomeCubit>().loadPokemons();
-    });
   }
 
   void _onSearchChanged() {
-    final homeState = context.read<HomeCubit>().state;
+    final homeState = ref.read(homeStateProvider);
     _applyFilters(homeState.pokemons);
   }
 
@@ -83,7 +79,7 @@ class _PokedexViewState extends State<PokedexView>
             });
           },
           onApply: () {
-            final homeState = context.read<HomeCubit>().state;
+            final homeState = ref.read(homeStateProvider);
             _applyFilters(homeState.pokemons);
           },
         );
@@ -93,109 +89,107 @@ class _PokedexViewState extends State<PokedexView>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return Center(
-            child: RotationTransition(
-              turns: AnimationController(
-                duration: const Duration(seconds: 1),
-                vsync: this,
-              )..repeat(),
-              child: Assets.images.svg.loader.svg(),
-            ),
-          );
-        }
+    final state = ref.watch(homeStateProvider);
 
-        if (state.error != null) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+    if (state.isLoading) {
+      return Center(
+        child: RotationTransition(
+          turns: AnimationController(
+            duration: const Duration(seconds: 1),
+            vsync: this,
+          )..repeat(),
+          child: Assets.images.svg.loader.svg(),
+        ),
+      );
+    }
+
+    if (state.error != null) {
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TemplateWidget(
+                image: Padding(
+                  padding: const EdgeInsets.only(bottom: 32),
+                  child: Assets.images.png.magikarp.image(),
+                ),
+                title: context.l10n.generalErrorMessage,
+                details: context.l10n.generalErrorDetails),
+            ElevatedButton(
+              onPressed: () =>
+                  ref.read(homeStateProvider.notifier).loadPokemons(),
+              child: const Text('Retry'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (_filteredPokemonList.isEmpty && !_hasActiveFilters) {
+      _filteredPokemonList = state.pokemons;
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 32),
+          SearchWidget(showFilterBottomSheet: () {
+            _showFilterBottomSheet();
+          }),
+          const SizedBox(height: 16),
+          if (_hasActiveFilters) ...[
+            Row(
               children: [
-                TemplateWidget(
-                    image: Padding(
-                      padding: const EdgeInsets.only(bottom: 32),
-                      child: Assets.images.png.magikarp.image(),
+                Text(
+                  'Se han encontrado ${_filteredPokemonList.length} resultados:',
+                  style: AppTextStyles.poppinsRegular14.copyWith(
+                    color: Colors.grey[600],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _searchController.clear();
+                      _selectedTypes.clear();
+                      _applyFilters(state.pokemons);
+                    });
+                  },
+                  child: Text(
+                    'Borrar filtro',
+                    style: AppTextStyles.poppinsMedium14.copyWith(
+                      color: AppColors.buttonPrimary,
                     ),
-                    title: context.l10n.generalErrorMessage,
-                    details: context.l10n.generalErrorDetails),
-                ElevatedButton(
-                  onPressed: () => context.read<HomeCubit>().loadPokemons(),
-                  child: const Text('Retry'),
+                  ),
                 ),
               ],
             ),
-          );
-        }
-
-        if (_filteredPokemonList.isEmpty && !_hasActiveFilters) {
-          _filteredPokemonList = state.pokemons;
-        }
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 32),
-              SearchWidget(showFilterBottomSheet: () {
-                _showFilterBottomSheet();
-              }),
-              const SizedBox(height: 16),
-              if (_hasActiveFilters) ...[
-                Row(
-                  children: [
-                    Text(
-                      'Se han encontrado ${_filteredPokemonList.length} resultados:',
-                      style: AppTextStyles.poppinsRegular14.copyWith(
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _searchController.clear();
-                          _selectedTypes.clear();
-                          _applyFilters(state.pokemons);
-                        });
+            const SizedBox(height: 16),
+          ],
+          Expanded(
+            child: _filteredPokemonList.isEmpty
+                ? TemplateWidget(
+                    image: Assets.images.png.jigglypuff.image(),
+                    title: context.l10n.emptyTitle,
+                    details: context.l10n.emptyContent)
+                : RefreshIndicator(
+                    onRefresh: () async {
+                      await ref.read(homeStateProvider.notifier).loadPokemons();
+                      _applyFilters(ref.read(homeStateProvider).pokemons);
+                    },
+                    child: ListView.builder(
+                      itemCount: _filteredPokemonList.length,
+                      itemBuilder: (context, index) {
+                        final pokemon = _filteredPokemonList[index];
+                        return PokemonCard(pokemon: pokemon);
                       },
-                      child: Text(
-                        'Borrar filtro',
-                        style: AppTextStyles.poppinsMedium14.copyWith(
-                          color: AppColors.buttonPrimary,
-                        ),
-                      ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-              ],
-              Expanded(
-                child: _filteredPokemonList.isEmpty
-                    ? TemplateWidget(
-                        image: Assets.images.png.jigglypuff.image(),
-                        title: context.l10n.emptyTitle,
-                        details: context.l10n.emptyContent)
-                    : RefreshIndicator(
-                        onRefresh: () async {
-                          await context.read<HomeCubit>().loadPokemons();
-                          _applyFilters(
-                              context.read<HomeCubit>().state.pokemons);
-                        },
-                        child: ListView.builder(
-                          itemCount: _filteredPokemonList.length,
-                          itemBuilder: (context, index) {
-                            final pokemon = _filteredPokemonList[index];
-                            return PokemonCard(pokemon: pokemon);
-                          },
-                        ),
-                      ),
-              ),
-            ],
+                  ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 
