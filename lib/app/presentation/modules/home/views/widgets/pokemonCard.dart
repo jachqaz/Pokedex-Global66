@@ -62,9 +62,7 @@ class _PokemonCardState extends State<PokemonCard> {
             ),
             Expanded(
               flex: 0,
-              // Flex 0 permite que el Expanded tome la altura máxima, pero mantenga el ancho de su hijo
               child: Padding(
-                // Opcional: añade un poco de espacio si lo necesitas
                 padding: const EdgeInsets.only(left: 1.0),
                 child: _buildCard(),
               ),
