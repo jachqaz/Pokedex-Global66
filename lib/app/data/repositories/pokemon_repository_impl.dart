@@ -23,11 +23,14 @@ class PokemonRepositoryImpl implements PokemonRepository {
         return cachedData.map((json) => Pokemon.fromJson(json)).toList();
       }
 
-      final first50 = await remoteDataSource.getAllPokemons();
+      final first20 = await remoteDataSource.getAllPokemons();
+
+      final pokemonsJson = first20.map((pokemon) => pokemon.toJson()).toList();
+      await localStorageService.setObjectList(_pokemonsKey, pokemonsJson);
 
       _loadRemainingPokemonsInBackground();
 
-      return first50;
+      return first20;
     } catch (e) {
       throw Exception('Failed to get pokemons: $e');
     }
@@ -67,13 +70,20 @@ class PokemonRepositoryImpl implements PokemonRepository {
     try {
       final count = await (remoteDataSource as PokemonRemoteDataSourceImpl)
           .getPokemonCount();
-      final remaining = await (remoteDataSource as PokemonRemoteDataSourceImpl)
-          .getPokemonRange(51, count);
-      final first50 = await remoteDataSource.getAllPokemons();
-      final allPokemons = [...first50, ...remaining];
-      final pokemonsJson =
-          allPokemons.map((pokemon) => pokemon.toJson()).toList();
-      await localStorageService.setObjectList(_pokemonsKey, pokemonsJson);
+      final cachedData = localStorageService.getObjectList(_pokemonsKey);
+      final currentPokemons =
+          cachedData.map((json) => Pokemon.fromJson(json)).toList();
+
+      for (int i = 21; i <= count; i++) {
+        try {
+          final pokemon =
+              await (remoteDataSource as PokemonRemoteDataSourceImpl)
+                  .getPokemon(i);
+          currentPokemons.add(pokemon);
+          final pokemonsJson = currentPokemons.map((p) => p.toJson()).toList();
+          await localStorageService.setObjectList(_pokemonsKey, pokemonsJson);
+        } catch (_) {}
+      }
     } catch (_) {}
   }
 }

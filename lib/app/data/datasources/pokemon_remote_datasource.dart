@@ -20,7 +20,46 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
 
   @override
   Future<List<Pokemon>> getAllPokemons() async {
-    return getPokemonRange(1, 50);
+    return getPokemonRange(1, 20);
+  }
+
+  Future<Pokemon> getPokemon(int id) async {
+    try {
+      final systemLanguage = Platform.localeName.startsWith('es') ? 'es' : 'en';
+
+      final pokemonResponse =
+          await dio.get('https://pokeapi.co/api/v2/pokemon/$id');
+      final speciesResponse =
+          await dio.get('https://pokeapi.co/api/v2/pokemon-species/$id');
+
+      final flavorTextEntries =
+          speciesResponse.data['flavor_text_entries'] as List;
+      final flavorText = flavorTextEntries.firstWhere(
+        (entry) => entry['language']['name'] == systemLanguage,
+        orElse: () => flavorTextEntries.first,
+      )['flavor_text'] as String;
+
+      final types = pokemonResponse.data['types'] as List;
+      final List<Map<String, dynamic>> damageRelations = [];
+
+      for (final type in types) {
+        final typeUrl = type['type']['url'] as String;
+        final typeId = typeUrl.split('/').where((s) => s.isNotEmpty).last;
+        final typeResponse =
+            await dio.get('https://pokeapi.co/api/v2/type/$typeId');
+        final doubleDamageFrom =
+            typeResponse.data['damage_relations']['double_damage_from'] as List;
+        damageRelations.addAll(doubleDamageFrom.cast<Map<String, dynamic>>());
+      }
+
+      final pokemonData = Map<String, dynamic>.from(pokemonResponse.data);
+      pokemonData['flavorText'] = flavorText;
+      pokemonData['damageRelations'] = damageRelations;
+
+      return Pokemon.fromJson(pokemonData);
+    } catch (e) {
+      throw Exception('Failed to fetch pokemon $id: $e');
+    }
   }
 
   @override

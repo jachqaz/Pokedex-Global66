@@ -177,12 +177,19 @@ class _PokedexViewState extends State<PokedexView>
                         image: Assets.images.png.jigglypuff.image(),
                         title: context.l10n.emptyTitle,
                         details: context.l10n.emptyContent)
-                    : ListView.builder(
-                        itemCount: _filteredPokemonList.length,
-                        itemBuilder: (context, index) {
-                          final pokemon = _filteredPokemonList[index];
-                          return PokemonCard(pokemon: pokemon);
+                    : RefreshIndicator(
+                        onRefresh: () async {
+                          await context.read<HomeCubit>().loadPokemons();
+                          _applyFilters(
+                              context.read<HomeCubit>().state.pokemons);
                         },
+                        child: ListView.builder(
+                          itemCount: _filteredPokemonList.length,
+                          itemBuilder: (context, index) {
+                            final pokemon = _filteredPokemonList[index];
+                            return PokemonCard(pokemon: pokemon);
+                          },
+                        ),
                       ),
               ),
             ],
