@@ -37,4 +37,48 @@ class AppColors {
   static const Color cardFairy = Color(0xFFEE99AC);
   static const Color cardStellar = Color(0xFF4C8F8F); // Color genérico
   static const Color cardUnknown = Color(0xFF68A090); // Color por defecto
+  static Color getColorForType(type) {
+    switch (type) {
+      case 'normal':
+        return AppColors.cardNormal;
+      case 'fire':
+        return AppColors.cardFire;
+      case 'water':
+        return AppColors.cardWater;
+      case 'grass':
+        return AppColors.cardGrass;
+      case 'electric':
+        return AppColors.cardElectric;
+      case 'ice':
+        return AppColors.cardIce;
+      case 'fighting':
+        return AppColors.cardFighting;
+      case 'poison':
+        return AppColors.cardPoison;
+      case 'ground':
+        return AppColors.cardGround;
+      case 'flying':
+        return AppColors.cardFlying;
+      case 'psychic':
+        return AppColors.cardPsychic;
+      case 'bug':
+        return AppColors.cardBug;
+      case 'rock':
+        return AppColors.cardRock;
+      case 'ghost':
+        return AppColors.cardGhost;
+      case 'dragon':
+        return AppColors.cardDragon;
+      case 'steel':
+        return AppColors.cardSteel;
+      case 'dark':
+        return AppColors.cardDark;
+      case 'fairy':
+        return AppColors.cardFairy;
+      case 'stellar':
+        return AppColors.cardStellar;
+      default:
+        return AppColors.cardUnknown;
+    }
+  }
 }
