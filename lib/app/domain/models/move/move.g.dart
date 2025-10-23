@@ -8,8 +8,10 @@ part of 'move.dart';
 
 _$MoveImpl _$$MoveImplFromJson(Map<String, dynamic> json) => _$MoveImpl(
       move: MoveDetail.fromJson(json['move'] as Map<String, dynamic>),
-      versionGroupDetails: (json['versionGroupDetails'] as List<dynamic>)
-          .map((e) => VersionGroupDetail.fromJson(e as Map<String, dynamic>))
+      versionGroupDetails: (json['versionGroupDetails'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : VersionGroupDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

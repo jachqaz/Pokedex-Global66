@@ -10,7 +10,7 @@ part 'past_ability.g.dart';
 @freezed
 abstract class PastAbility with _$PastAbility {
   factory PastAbility({
-    required List<Ability> abilities,
+    required List<Ability?>? abilities,
     required Generation generation,
   }) = _PastAbility;
 

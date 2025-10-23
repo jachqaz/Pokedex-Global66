@@ -8,13 +8,13 @@ part of 'sprites.dart';
 
 _$SpritesImpl _$$SpritesImplFromJson(Map<String, dynamic> json) =>
     _$SpritesImpl(
-      backDefault: json['backDefault'] as String,
+      backDefault: json['backDefault'] as String?,
       backFemale: json['backFemale'] as String?,
-      backShiny: json['backShiny'] as String,
+      backShiny: json['backShiny'] as String?,
       backShinyFemale: json['backShinyFemale'] as String?,
-      frontDefault: json['frontDefault'] as String,
+      frontDefault: json['frontDefault'] as String?,
       frontFemale: json['frontFemale'] as String?,
-      frontShiny: json['frontShiny'] as String,
+      frontShiny: json['frontShiny'] as String?,
       frontShinyFemale: json['frontShinyFemale'] as String?,
       other: OtherSprites.fromJson(json['other'] as Map<String, dynamic>),
       versions:

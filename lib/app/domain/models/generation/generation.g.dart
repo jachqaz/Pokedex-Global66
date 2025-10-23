@@ -8,8 +8,8 @@ part of 'generation.dart';
 
 _$GenerationImpl _$$GenerationImplFromJson(Map<String, dynamic> json) =>
     _$GenerationImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$GenerationImplToJson(_$GenerationImpl instance) =>

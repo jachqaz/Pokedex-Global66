@@ -9,32 +9,36 @@ part of 'pokemon.dart';
 _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
     _$PokemonImpl(
       abilities: (json['abilities'] as List<dynamic>?)
-          ?.map((e) => Ability.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : Ability.fromJson(e as Map<String, dynamic>))
           .toList(),
       baseExperience: (json['baseExperience'] as num?)?.toInt(),
       cries: json['cries'] == null
           ? null
           : Cries.fromJson(json['cries'] as Map<String, dynamic>),
       forms: (json['forms'] as List<dynamic>?)
-          ?.map((e) => Form.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : Form.fromJson(e as Map<String, dynamic>))
           .toList(),
       gameIndices: (json['gameIndices'] as List<dynamic>?)
-          ?.map((e) => GameIndex.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : GameIndex.fromJson(e as Map<String, dynamic>))
           .toList(),
       height: (json['height'] as num?)?.toInt(),
-      heldItems: json['heldItems'] as List<dynamic>?,
       id: (json['id'] as num?)?.toInt(),
       isDefault: json['isDefault'] as bool?,
       locationAreaEncounters: json['locationAreaEncounters'] as String?,
       moves: (json['moves'] as List<dynamic>?)
-          ?.map((e) => Move.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : Move.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: json['name'] as String?,
       order: (json['order'] as num?)?.toInt(),
       pastAbilities: (json['pastAbilities'] as List<dynamic>?)
-          ?.map((e) => PastAbility.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e == null
+              ? null
+              : PastAbility.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pastTypes: json['pastTypes'] as List<dynamic>?,
       species: json['species'] == null
           ? null
           : Species.fromJson(json['species'] as Map<String, dynamic>),
@@ -42,10 +46,13 @@ _$PokemonImpl _$$PokemonImplFromJson(Map<String, dynamic> json) =>
           ? null
           : Sprites.fromJson(json['sprites'] as Map<String, dynamic>),
       stats: (json['stats'] as List<dynamic>?)
-          ?.map((e) => Stat.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              e == null ? null : Stat.fromJson(e as Map<String, dynamic>))
           .toList(),
       types: (json['types'] as List<dynamic>?)
-          ?.map((e) => PokemonType.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e == null
+              ? null
+              : PokemonType.fromJson(e as Map<String, dynamic>))
           .toList(),
       weight: (json['weight'] as num?)?.toInt(),
     );
@@ -58,7 +65,6 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
       'forms': instance.forms,
       'gameIndices': instance.gameIndices,
       'height': instance.height,
-      'heldItems': instance.heldItems,
       'id': instance.id,
       'isDefault': instance.isDefault,
       'locationAreaEncounters': instance.locationAreaEncounters,
@@ -66,7 +72,6 @@ Map<String, dynamic> _$$PokemonImplToJson(_$PokemonImpl instance) =>
       'name': instance.name,
       'order': instance.order,
       'pastAbilities': instance.pastAbilities,
-      'pastTypes': instance.pastTypes,
       'species': instance.species,
       'sprites': instance.sprites,
       'stats': instance.stats,

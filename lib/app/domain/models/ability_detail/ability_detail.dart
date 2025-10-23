@@ -8,8 +8,8 @@ part 'ability_detail.g.dart';
 @freezed
 abstract class AbilityDetail with _$AbilityDetail {
   factory AbilityDetail({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _AbilityDetail;
 
   factory AbilityDetail.fromJson(Json json) => _$AbilityDetailFromJson(json);

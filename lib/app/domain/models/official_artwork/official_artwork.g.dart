@@ -9,8 +9,8 @@ part of 'official_artwork.dart';
 _$OfficialArtworkImpl _$$OfficialArtworkImplFromJson(
         Map<String, dynamic> json) =>
     _$OfficialArtworkImpl(
-      frontDefault: json['frontDefault'] as String,
-      frontShiny: json['frontShiny'] as String,
+      frontDefault: json['frontDefault'] as String?,
+      frontShiny: json['frontShiny'] as String?,
     );
 
 Map<String, dynamic> _$$OfficialArtworkImplToJson(

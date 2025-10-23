@@ -7,8 +7,8 @@ part of 'stat.dart';
 // **************************************************************************
 
 _$StatImpl _$$StatImplFromJson(Map<String, dynamic> json) => _$StatImpl(
-      baseStat: (json['baseStat'] as num).toInt(),
-      effort: (json['effort'] as num).toInt(),
+      baseStat: (json['baseStat'] as num?)?.toInt(),
+      effort: (json['effort'] as num?)?.toInt(),
       stat: StatDetail.fromJson(json['stat'] as Map<String, dynamic>),
     );
 

@@ -18,25 +18,23 @@ part 'pokemon.g.dart';
 @freezed
 abstract class Pokemon with _$Pokemon {
   factory Pokemon({
-    @required List<Ability>? abilities,
+    @required List<Ability?>? abilities,
     @required int? baseExperience,
     @required Cries? cries,
-    @required List<Form>? forms,
-    @required List<GameIndex>? gameIndices,
+    @required List<Form?>? forms,
+    @required List<GameIndex?>? gameIndices,
     @required int? height,
-    @required List<dynamic>? heldItems,
     @required int? id,
     @required bool? isDefault,
     @required String? locationAreaEncounters,
-    @required List<Move>? moves,
+    @required List<Move?>? moves,
     @required String? name,
     @required int? order,
-    @required List<PastAbility>? pastAbilities,
-    @required List<dynamic>? pastTypes,
+    @required List<PastAbility?>? pastAbilities,
     @required Species? species,
     @required Sprites? sprites,
-    @required List<Stat>? stats,
-    @required List<PokemonType>? types,
+    @required List<Stat?>? stats,
+    @required List<PokemonType?>? types,
     @required int? weight,
   }) = _Pokemon;
 

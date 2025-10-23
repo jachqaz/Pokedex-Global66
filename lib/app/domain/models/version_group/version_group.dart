@@ -8,8 +8,8 @@ part 'version_group.g.dart';
 @freezed
 abstract class VersionGroup with _$VersionGroup {
   factory VersionGroup({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _VersionGroup;
 
   factory VersionGroup.fromJson(Json json) => _$VersionGroupFromJson(json);

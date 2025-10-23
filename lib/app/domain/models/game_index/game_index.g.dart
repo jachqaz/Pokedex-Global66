@@ -8,8 +8,10 @@ part of 'game_index.dart';
 
 _$GameIndexImpl _$$GameIndexImplFromJson(Map<String, dynamic> json) =>
     _$GameIndexImpl(
-      gameIndex: (json['gameIndex'] as num).toInt(),
-      version: Version.fromJson(json['version'] as Map<String, dynamic>),
+      gameIndex: (json['gameIndex'] as num?)?.toInt(),
+      version: json['version'] == null
+          ? null
+          : Version.fromJson(json['version'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GameIndexImplToJson(_$GameIndexImpl instance) =>

@@ -9,8 +9,8 @@ part of 'ability.dart';
 _$AbilityImpl _$$AbilityImplFromJson(Map<String, dynamic> json) =>
     _$AbilityImpl(
       ability: AbilityDetail.fromJson(json['ability'] as Map<String, dynamic>),
-      isHidden: json['isHidden'] as bool,
-      slot: (json['slot'] as num).toInt(),
+      isHidden: json['isHidden'] as bool?,
+      slot: (json['slot'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$AbilityImplToJson(_$AbilityImpl instance) =>

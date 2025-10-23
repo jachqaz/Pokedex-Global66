@@ -8,8 +8,8 @@ part 'official_artwork.g.dart';
 @freezed
 abstract class OfficialArtwork with _$OfficialArtwork {
   factory OfficialArtwork({
-    required String frontDefault,
-    required String frontShiny,
+    required String? frontDefault,
+    required String? frontShiny,
   }) = _OfficialArtwork;
 
   factory OfficialArtwork.fromJson(Json json) =>

@@ -11,7 +11,7 @@ part 'move.g.dart';
 abstract class Move with _$Move {
   factory Move({
     required MoveDetail move,
-    required List<VersionGroupDetail> versionGroupDetails,
+    required List<VersionGroupDetail?>? versionGroupDetails,
   }) = _Move;
 
   factory Move.fromJson(Json json) => _$MoveFromJson(json);

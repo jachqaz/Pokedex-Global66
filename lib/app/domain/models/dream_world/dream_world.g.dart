@@ -8,7 +8,7 @@ part of 'dream_world.dart';
 
 _$DreamWorldImpl _$$DreamWorldImplFromJson(Map<String, dynamic> json) =>
     _$DreamWorldImpl(
-      frontDefault: json['frontDefault'] as String,
+      frontDefault: json['frontDefault'] as String?,
       frontFemale: json['frontFemale'] as String?,
     );
 

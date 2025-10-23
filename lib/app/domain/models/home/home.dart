@@ -8,9 +8,9 @@ part 'home.g.dart';
 @freezed
 abstract class Home with _$Home {
   factory Home({
-    required String frontDefault,
+    required String? frontDefault,
     String? frontFemale,
-    required String frontShiny,
+    required String? frontShiny,
     String? frontShinyFemale,
   }) = _Home;
 

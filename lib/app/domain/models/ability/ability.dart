@@ -10,8 +10,8 @@ part 'ability.g.dart';
 abstract class Ability with _$Ability {
   factory Ability({
     required AbilityDetail ability,
-    required bool isHidden,
-    required int slot,
+    required bool? isHidden,
+    required int? slot,
   }) = _Ability;
 
   factory Ability.fromJson(Json json) => _$AbilityFromJson(json);

@@ -16,14 +16,14 @@ part 'sprites_versions.g.dart';
 @freezed
 abstract class SpritesVersions with _$SpritesVersions {
   factory SpritesVersions({
-    required GenerationI generationI,
-    required GenerationII generationII,
-    required GenerationIII generationIII,
-    required GenerationIV generationIV,
-    required GenerationV generationV,
-    required GenerationVI generationVI,
-    required GenerationVII generationVII,
-    required GenerationVIII generationVIII,
+    required GenerationI? generationI,
+    required GenerationII? generationII,
+    required GenerationIII? generationIII,
+    required GenerationIV? generationIV,
+    required GenerationV? generationV,
+    required GenerationVI? generationVI,
+    required GenerationVII? generationVII,
+    required GenerationVIII? generationVIII,
   }) = _SpritesVersions;
 
   factory SpritesVersions.fromJson(Json json) =>

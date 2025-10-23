@@ -9,8 +9,8 @@ part 'stat.g.dart';
 @freezed
 abstract class Stat with _$Stat {
   factory Stat({
-    required int baseStat,
-    required int effort,
+    required int? baseStat,
+    required int? effort,
     required StatDetail stat,
   }) = _Stat;
 

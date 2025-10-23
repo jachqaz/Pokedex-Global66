@@ -8,8 +8,8 @@ part 'stat_detail.g.dart';
 @freezed
 abstract class StatDetail with _$StatDetail {
   factory StatDetail({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _StatDetail;
 
   factory StatDetail.fromJson(Json json) => _$StatDetailFromJson(json);

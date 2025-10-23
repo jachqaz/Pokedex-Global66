@@ -8,8 +8,8 @@ part 'move_detail.g.dart';
 @freezed
 abstract class MoveDetail with _$MoveDetail {
   factory MoveDetail({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _MoveDetail;
 
   factory MoveDetail.fromJson(Json json) => _$MoveDetailFromJson(json);

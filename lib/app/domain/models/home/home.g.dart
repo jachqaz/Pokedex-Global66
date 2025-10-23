@@ -7,9 +7,9 @@ part of 'home.dart';
 // **************************************************************************
 
 _$HomeImpl _$$HomeImplFromJson(Map<String, dynamic> json) => _$HomeImpl(
-      frontDefault: json['frontDefault'] as String,
+      frontDefault: json['frontDefault'] as String?,
       frontFemale: json['frontFemale'] as String?,
-      frontShiny: json['frontShiny'] as String,
+      frontShiny: json['frontShiny'] as String?,
       frontShinyFemale: json['frontShinyFemale'] as String?,
     );
 

@@ -8,13 +8,13 @@ part 'showdown.g.dart';
 @freezed
 abstract class Showdown with _$Showdown {
   factory Showdown({
-    required String backDefault,
+    required String? backDefault,
     String? backFemale,
-    required String backShiny,
+    required String? backShiny,
     String? backShinyFemale,
-    required String frontDefault,
+    required String? frontDefault,
     String? frontFemale,
-    required String frontShiny,
+    required String? frontShiny,
     String? frontShinyFemale,
   }) = _Showdown;
 

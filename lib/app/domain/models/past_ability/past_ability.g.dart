@@ -8,8 +8,9 @@ part of 'past_ability.dart';
 
 _$PastAbilityImpl _$$PastAbilityImplFromJson(Map<String, dynamic> json) =>
     _$PastAbilityImpl(
-      abilities: (json['abilities'] as List<dynamic>)
-          .map((e) => Ability.fromJson(e as Map<String, dynamic>))
+      abilities: (json['abilities'] as List<dynamic>?)
+          ?.map((e) =>
+              e == null ? null : Ability.fromJson(e as Map<String, dynamic>))
           .toList(),
       generation:
           Generation.fromJson(json['generation'] as Map<String, dynamic>),

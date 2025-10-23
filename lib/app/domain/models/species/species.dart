@@ -8,8 +8,8 @@ part 'species.g.dart';
 @freezed
 abstract class Species with _$Species {
   factory Species({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _Species;
 
   factory Species.fromJson(Json json) => _$SpeciesFromJson(json);

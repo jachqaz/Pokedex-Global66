@@ -8,8 +8,8 @@ part of 'stat_detail.dart';
 
 _$StatDetailImpl _$$StatDetailImplFromJson(Map<String, dynamic> json) =>
     _$StatDetailImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$StatDetailImplToJson(_$StatDetailImpl instance) =>

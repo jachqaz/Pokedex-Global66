@@ -7,8 +7,8 @@ part of 'cries.dart';
 // **************************************************************************
 
 _$CriesImpl _$$CriesImplFromJson(Map<String, dynamic> json) => _$CriesImpl(
-      latest: json['latest'] as String,
-      legacy: json['legacy'] as String,
+      latest: json['latest'] as String?,
+      legacy: json['legacy'] as String?,
     );
 
 Map<String, dynamic> _$$CriesImplToJson(_$CriesImpl instance) =>

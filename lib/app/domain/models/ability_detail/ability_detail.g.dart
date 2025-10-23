@@ -8,8 +8,8 @@ part of 'ability_detail.dart';
 
 _$AbilityDetailImpl _$$AbilityDetailImplFromJson(Map<String, dynamic> json) =>
     _$AbilityDetailImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$AbilityDetailImplToJson(_$AbilityDetailImpl instance) =>

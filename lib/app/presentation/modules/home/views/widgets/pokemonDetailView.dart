@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
-import '../../../../../domain/models/pokemon.dart';
-import '../../../../../generated/assets.gen.dart';
+import '../../../../../domain/models/pokemon/pokemon.dart';
 
 class PokemonDetailView extends StatelessWidget {
   final Pokemon pokemon;
@@ -30,7 +29,7 @@ class PokemonDetailView extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    pokemon.name,
+                    pokemon.name.toString(),
                     style: AppTextStyles.poppinsMedium24.copyWith(
                       color: AppColors.azulNormal,
                       fontWeight: FontWeight.w700,
@@ -41,7 +40,7 @@ class PokemonDetailView extends StatelessWidget {
               const SizedBox(height: 24),
               Center(
                 child: Text(
-                  pokemon.number,
+                  pokemon.id.toString(),
                   style: AppTextStyles.poppinsMedium18.copyWith(
                     color: Colors.grey[600],
                     fontWeight: FontWeight.w600,
@@ -49,44 +48,44 @@ class PokemonDetailView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              Center(
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: _getTypeColor(pokemon.type).withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      color: _getTypeColor(pokemon.type).withOpacity(0.3),
-                      width: 4,
-                    ),
-                  ),
-                  child: Center(
-                    child: Assets.images.png.people.image(
-                      width: 120,
-                      height: 120,
-                    ),
-                  ),
-                ),
-              ),
+              // Center(
+              //   child: Container(
+              //     width: 200,
+              //     height: 200,
+              //     decoration: BoxDecoration(
+              //       color: _getTypeColor(pokemon.type).withOpacity(0.1),
+              //       borderRadius: BorderRadius.circular(100),
+              //       border: Border.all(
+              //         color: _getTypeColor(pokemon.type).withOpacity(0.3),
+              //         width: 4,
+              //       ),
+              //     ),
+              //     child: Center(
+              //       child: Assets.images.png.people.image(
+              //         width: 120,
+              //         height: 120,
+              //       ),
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 32),
-              Text(
-                pokemon.description,
-                style: AppTextStyles.poppinsRegular16.copyWith(
-                  color: Colors.grey[700],
-                  height: 1.5,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              // Text(
+              //   pokemon.description,
+              //   style: AppTextStyles.poppinsRegular16.copyWith(
+              //     color: Colors.grey[700],
+              //     height: 1.5,
+              //   ),
+              //   textAlign: TextAlign.center,
+              // ),
               const SizedBox(height: 32),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildStatItem('PESO', pokemon.weight),
-                  _buildStatItem('ALTURA', pokemon.height),
-                  _buildStatItem('CATEGORÍA', pokemon.category),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: [
+              //     _buildStatItem('PESO', pokemon.weight),
+              //     _buildStatItem('ALTURA', pokemon.height),
+              //     _buildStatItem('CATEGORÍA', pokemon.category),
+              //   ],
+              // ),
               const SizedBox(height: 32),
               Text(
                 'Debilidades',

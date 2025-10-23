@@ -8,8 +8,8 @@ part of 'species.dart';
 
 _$SpeciesImpl _$$SpeciesImplFromJson(Map<String, dynamic> json) =>
     _$SpeciesImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$SpeciesImplToJson(_$SpeciesImpl instance) =>

@@ -12,10 +12,10 @@ part 'other_sprites.g.dart';
 @freezed
 abstract class OtherSprites with _$OtherSprites {
   factory OtherSprites({
-    required DreamWorld dreamWorld,
-    required Home home,
-    required OfficialArtwork officialArtwork,
-    required Showdown showdown,
+    required DreamWorld? dreamWorld,
+    required Home? home,
+    required OfficialArtwork? officialArtwork,
+    required Showdown? showdown,
   }) = _OtherSprites;
 
   factory OtherSprites.fromJson(Json json) => _$OtherSpritesFromJson(json);

@@ -8,8 +8,8 @@ part of 'version.dart';
 
 _$VersionImpl _$$VersionImplFromJson(Map<String, dynamic> json) =>
     _$VersionImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$VersionImplToJson(_$VersionImpl instance) =>

@@ -9,8 +9,8 @@ part of 'move_learn_method.dart';
 _$MoveLearnMethodImpl _$$MoveLearnMethodImplFromJson(
         Map<String, dynamic> json) =>
     _$MoveLearnMethodImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$MoveLearnMethodImplToJson(

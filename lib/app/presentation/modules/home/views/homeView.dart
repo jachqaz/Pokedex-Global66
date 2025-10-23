@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../config/di/injection_container.dart' as di;
 import '../../../global/platformUtils.dart';
 import '../controller/homeController.dart';
 import '../cubit/homeCubit.dart';
@@ -23,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
     return ChangeNotifierProvider(
       create: (context) => HomeController(
         HomeState(),
+        di.sl(),
       )..init(),
       child: Scaffold(
         body: BlocBuilder<HomeCubit, Object>(

@@ -8,8 +8,8 @@ part of 'type_detail.dart';
 
 _$TypeDetailImpl _$$TypeDetailImplFromJson(Map<String, dynamic> json) =>
     _$TypeDetailImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$TypeDetailImplToJson(_$TypeDetailImpl instance) =>

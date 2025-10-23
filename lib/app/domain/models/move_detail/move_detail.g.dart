@@ -8,8 +8,8 @@ part of 'move_detail.dart';
 
 _$MoveDetailImpl _$$MoveDetailImplFromJson(Map<String, dynamic> json) =>
     _$MoveDetailImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$MoveDetailImplToJson(_$MoveDetailImpl instance) =>

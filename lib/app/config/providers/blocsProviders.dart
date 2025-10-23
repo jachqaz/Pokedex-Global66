@@ -10,6 +10,7 @@ import '../../presentation/modules/onboarding/controller/onboardingController.da
 import '../../presentation/modules/onboarding/cubit/onboardingCubit.dart';
 import '../../presentation/modules/onboarding/state/onboardingState.dart';
 import '../../presentation/myApp.dart';
+import '../di/injection_container.dart' as di;
 import '../router/routerSimpleCubit.dart';
 
 class BlocsProviders extends StatelessWidget {
@@ -30,7 +31,7 @@ class BlocsProviders extends StatelessWidget {
             RouterSimpleCubit(context.watch<RouterSimpleCubit>().state),
       ),
       BlocProvider(
-        create: (context) => HomeCubit(HomeState()),
+        create: (context) => HomeCubit(di.sl()),
       ),
       BlocProvider(
         create: (context) => OnboardingCubit(OnboardingState()),
@@ -41,7 +42,7 @@ class BlocsProviders extends StatelessWidget {
   List<SingleChildWidget> get buildChangeNotifierProvider {
     return [
       ChangeNotifierProvider<HomeController>(
-        create: (context) => HomeController(HomeState()),
+        create: (context) => HomeController(HomeState(), di.sl()),
       ),
       ChangeNotifierProvider<OnboardingController>(
         create: (context) => OnboardingController(OnboardingState()),

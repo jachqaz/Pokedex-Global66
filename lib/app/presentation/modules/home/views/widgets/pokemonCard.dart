@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
-import '../../../../../domain/models/pokemon.dart';
+import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../generated/assets.gen.dart';
 import 'pokemonDetailView.dart';
 
@@ -40,14 +40,14 @@ class _PokemonCardState extends State<PokemonCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'N°${widget.pokemon.number}',
+                      'N°${widget.pokemon.id}',
                       style: AppTextStyles.poppinsSemiBold12.copyWith(
                         color: AppColors.textCard,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      widget.pokemon.name,
+                      widget.pokemon.name.toString(),
                       style: AppTextStyles.poppinsSemiBold21,
                     ),
                     const SizedBox(height: 12),

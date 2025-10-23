@@ -8,7 +8,7 @@ part 'dream_world.g.dart';
 @freezed
 abstract class DreamWorld with _$DreamWorld {
   factory DreamWorld({
-    required String frontDefault,
+    required String? frontDefault,
     String? frontFemale,
   }) = _DreamWorld;
 

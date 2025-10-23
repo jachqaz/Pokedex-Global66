@@ -8,8 +8,8 @@ part 'move_learn_method.g.dart';
 @freezed
 abstract class MoveLearnMethod with _$MoveLearnMethod {
   factory MoveLearnMethod({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _MoveLearnMethod;
 
   factory MoveLearnMethod.fromJson(Json json) =>

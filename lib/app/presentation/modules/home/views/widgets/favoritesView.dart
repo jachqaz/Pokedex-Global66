@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
-import '../../../../../domain/models/pokemon.dart';
+import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../generated/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
 import 'pokemonCard.dart';
@@ -16,7 +16,7 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  List<Pokemon> _favoritePokemons = samplePokemons;
+  List<Pokemon> _favoritePokemons = [];
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +58,13 @@ class _FavoritesViewState extends State<FavoritesView> {
 
   Widget _buildFavoriteItem(Pokemon pokemon, int index) {
     return Dismissible(
-      key: Key(pokemon.id),
+      key: Key(pokemon.id.toString()),
       direction: DismissDirection.endToStart,
       background: _buildDismissibleBackground(),
       secondaryBackground: _buildDismissibleSecondaryBackground(),
       confirmDismiss: (direction) async {
-        return await _showDeleteConfirmationDialog(context, pokemon.name);
+        return await _showDeleteConfirmationDialog(
+            context, pokemon.name.toString());
       },
       onDismissed: (direction) {
         _removeFavorite(index);

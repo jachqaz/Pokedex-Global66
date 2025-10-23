@@ -7,8 +7,8 @@ part of 'form.dart';
 // **************************************************************************
 
 _$FormImpl _$$FormImplFromJson(Map<String, dynamic> json) => _$FormImpl(
-      name: json['name'] as String,
-      url: json['url'] as String,
+      name: json['name'] as String?,
+      url: json['url'] as String?,
     );
 
 Map<String, dynamic> _$$FormImplToJson(_$FormImpl instance) =>

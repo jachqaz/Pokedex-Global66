@@ -8,8 +8,8 @@ part 'form.g.dart';
 @freezed
 abstract class Form with _$Form {
   factory Form({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _Form;
 
   factory Form.fromJson(Json json) => _$FormFromJson(json);

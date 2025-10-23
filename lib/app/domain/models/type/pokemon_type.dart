@@ -9,7 +9,7 @@ part 'pokemon_type.g.dart';
 @freezed
 abstract class PokemonType with _$PokemonType {
   factory PokemonType({
-    required int slot,
+    required int? slot,
     required TypeDetail? type,
   }) = _PokemonType;
 

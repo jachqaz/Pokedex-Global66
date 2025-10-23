@@ -8,8 +8,8 @@ part 'cries.g.dart';
 @freezed
 abstract class Cries with _$Cries {
   factory Cries({
-    required String latest,
-    required String legacy,
+    required String? latest,
+    required String? legacy,
   }) = _Cries;
 
   factory Cries.fromJson(Json json) => _$CriesFromJson(json);

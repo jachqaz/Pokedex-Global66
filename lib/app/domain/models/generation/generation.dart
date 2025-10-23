@@ -8,8 +8,8 @@ part 'generation.g.dart';
 @freezed
 abstract class Generation with _$Generation {
   factory Generation({
-    required String name,
-    required String url,
+    required String? name,
+    required String? url,
   }) = _Generation;
 
   factory Generation.fromJson(Json json) => _$GenerationFromJson(json);

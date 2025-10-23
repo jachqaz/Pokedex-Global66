@@ -10,13 +10,13 @@ part 'sprites.g.dart';
 @freezed
 abstract class Sprites with _$Sprites {
   factory Sprites({
-    required String backDefault,
+    required String? backDefault,
     String? backFemale,
-    required String backShiny,
+    required String? backShiny,
     String? backShinyFemale,
-    required String frontDefault,
+    required String? frontDefault,
     String? frontFemale,
-    required String frontShiny,
+    required String? frontShiny,
     String? frontShinyFemale,
     required OtherSprites other,
     required SpritesVersions versions,

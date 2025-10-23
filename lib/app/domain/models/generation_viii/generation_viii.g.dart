@@ -7,8 +7,12 @@ part of 'generation_viii.dart';
 // **************************************************************************
 
 _$GenerationVIIIImpl _$$GenerationVIIIImplFromJson(Map<String, dynamic> json) =>
-    _$GenerationVIIIImpl();
+    _$GenerationVIIIImpl(
+      icons: Icons.fromJson(json['icons'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$$GenerationVIIIImplToJson(
         _$GenerationVIIIImpl instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'icons': instance.icons,
+    };
