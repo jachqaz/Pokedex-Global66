@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../config/providers/riverpod_providers.dart';
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
 import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../generated/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
-import '../../cubit/homeCubit.dart';
-import '../../state/homeState.dart';
 import 'pokemonCard.dart';
 import 'templateWidget.dart';
 
-class FavoritesView extends StatefulWidget {
+class FavoritesView extends ConsumerWidget {
   const FavoritesView({super.key});
 
   @override
-  State<FavoritesView> createState() => _FavoritesViewState();
-}
-
-class _FavoritesViewState extends State<FavoritesView> {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
-      return state.favorites.isEmpty
-          ? _buildEmptyState()
-          : _buildFavoritesList(state.favorites);
-    });
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(homeStateProvider);
+    return state.favorites.isEmpty
+        ? _buildEmptyState()
+        : _buildFavoritesList(state.favorites, ref);
   }
 
   Widget _buildEmptyState() {
-    return TemplateWidget(
-        image: Padding(
-          padding: const EdgeInsets.only(bottom: 32),
-          child: Assets.images.png.magikarp.image(),
-        ),
-        title: context.l10n.noFavoritesMessage,
-        details: context.l10n.noFavoritesDetails);
+    return Builder(
+      builder: (context) => TemplateWidget(
+          image: Padding(
+            padding: const EdgeInsets.only(bottom: 32),
+            child: Assets.images.png.magikarp.image(),
+          ),
+          title: context.l10n.noFavoritesMessage,
+          details: context.l10n.noFavoritesDetails),
+    );
   }
 
-  Widget _buildFavoritesList(List<Pokemon> favorites) {
+  Widget _buildFavoritesList(List<Pokemon> favorites, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -50,7 +45,7 @@ class _FavoritesViewState extends State<FavoritesView> {
               itemCount: favorites.length,
               itemBuilder: (context, index) {
                 final pokemon = favorites[index];
-                return _buildFavoriteItem(pokemon);
+                return _buildFavoriteItem(pokemon, ref);
               },
             ),
           ),
@@ -59,7 +54,7 @@ class _FavoritesViewState extends State<FavoritesView> {
     );
   }
 
-  Widget _buildFavoriteItem(Pokemon pokemon) {
+  Widget _buildFavoriteItem(Pokemon pokemon, WidgetRef ref) {
     return Dismissible(
       key: Key(pokemon.id.toString()),
       direction: DismissDirection.endToStart,
@@ -67,10 +62,10 @@ class _FavoritesViewState extends State<FavoritesView> {
       secondaryBackground: _buildDismissibleSecondaryBackground(),
       confirmDismiss: (direction) async {
         return await _showDeleteConfirmationDialog(
-            context, pokemon.name.toString());
+            ref.context, pokemon.name.toString());
       },
       onDismissed: (direction) {
-        context.read<HomeCubit>().toggleFavorite(pokemon);
+        ref.read(homeStateProvider.notifier).toggleFavorite(pokemon);
       },
       child: PokemonCard(pokemon: pokemon),
     );

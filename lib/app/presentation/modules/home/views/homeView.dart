@@ -1,53 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../config/di/injection_container.dart' as di;
+import '../../../../config/providers/riverpod_providers.dart';
 import '../../../global/platformUtils.dart';
-import '../controller/homeController.dart';
-import '../cubit/homeCubit.dart';
-import '../state/homeState.dart';
 import 'homeViewDesk.dart';
 import 'homeViewMobile.dart';
 import 'homeViewWeb.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(homeStateProvider.notifier).loadPokemons();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => HomeController(
-        HomeState(),
-        di.sl(),
-        di.sl(),
-        di.sl(),
-        di.sl(),
-        di.sl(),
-      )..init(),
-      child: Scaffold(
-        body: BlocBuilder<HomeCubit, Object>(
-          builder: (context, state) => SafeArea(
-            child: LayoutBuilder(
-              builder: (context, constraints) => RefreshIndicator(
-                onRefresh: context.read<HomeController>().init,
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  child: SizedBox(
-                    height: constraints.maxHeight,
-                    child: Stack(
-                      children: [
-                        if (PlatformUtils.isWeb) HomeViewWeb(),
-                        if (PlatformUtils.isMobile) HomeViewMobile(),
-                        if (PlatformUtils.isDesktop) HomeViewDesk()
-                      ],
-                    ),
-                  ),
+    return Scaffold(
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) => RefreshIndicator(
+            onRefresh: () =>
+                ref.read(homeStateProvider.notifier).loadPokemons(),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: SizedBox(
+                height: constraints.maxHeight,
+                child: Stack(
+                  children: [
+                    if (PlatformUtils.isWeb) const HomeViewWeb(),
+                    if (PlatformUtils.isMobile) const HomeViewMobile(),
+                    if (PlatformUtils.isDesktop) const HomeViewDesk()
+                  ],
                 ),
               ),
             ),

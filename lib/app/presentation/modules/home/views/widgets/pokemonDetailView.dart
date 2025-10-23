@@ -1,24 +1,23 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../../config/providers/riverpod_providers.dart';
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
 import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../global/extensions.dart';
 import '../../../../global/utils.dart';
-import '../../cubit/homeCubit.dart';
-import '../../state/homeState.dart';
 import 'pokemonTypesWidget.dart';
 
-class PokemonDetailView extends StatelessWidget {
+class PokemonDetailView extends ConsumerWidget {
   final Pokemon pokemon;
 
   const PokemonDetailView({super.key, required this.pokemon});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final color = AppColors.getColorForType(
         pokemon.types?.first?.type?.name?.toLowerCase().trim());
     return Scaffold(
@@ -53,13 +52,14 @@ class PokemonDetailView extends StatelessWidget {
                                   icon: const Icon(Icons.arrow_back,
                                       color: Colors.white, size: 28),
                                 ),
-                                BlocBuilder<HomeCubit, HomeState>(
-                                  builder: (context, state) {
+                                Consumer(
+                                  builder: (context, ref, child) {
+                                    final state = ref.watch(homeStateProvider);
                                     final isFav = state.favorites
                                         .any((p) => p.id == pokemon.id);
                                     return IconButton(
-                                      onPressed: () => context
-                                          .read<HomeCubit>()
+                                      onPressed: () => ref
+                                          .read(homeStateProvider.notifier)
                                           .toggleFavorite(pokemon),
                                       icon: Icon(
                                         isFav
