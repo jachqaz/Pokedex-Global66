@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Colores Primarios
   static const Color primaryBlue = Color(0xFF1E88E5);
   static const Color tapBarActive = Color(0xFF424242);
   static const Color tapBarDefault = Color(0xFF0D47A1);
@@ -35,8 +34,8 @@ class AppColors {
   static const Color cardSteel = Color(0xB8B8D0);
   static const Color cardDark = Color(0xFF705848);
   static const Color cardFairy = Color(0xFFEE99AC);
-  static const Color cardStellar = Color(0xFF4C8F8F); // Color genérico
-  static const Color cardUnknown = Color(0xFF68A090); // Color por defecto
+  static const Color cardStellar = Color(0xFF4C8F8F);
+  static const Color cardUnknown = Color(0xFF68A090);
   static Color getColorForType(type) {
     switch (type) {
       case 'normal':

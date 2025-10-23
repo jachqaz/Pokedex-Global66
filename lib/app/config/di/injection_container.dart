@@ -14,19 +14,15 @@ import '../../domain/usecases/remove_favorite_usecase.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // External
   sl.registerLazySingleton(() => Dio());
 
-  // Local Storage
   final localStorage = await LocalStorageService.getInstance();
   sl.registerLazySingleton(() => localStorage);
 
-  // Data sources
   sl.registerLazySingleton<PokemonRemoteDataSource>(
     () => PokemonRemoteDataSourceImpl(sl()),
   );
 
-  // Repository
   sl.registerLazySingleton<PokemonRepository>(
     () => PokemonRepositoryImpl(
       remoteDataSource: sl(),
@@ -34,7 +30,6 @@ Future<void> init() async {
     ),
   );
 
-  // Use cases
   sl.registerLazySingleton(() => GetAllPokemonsUseCase(sl()));
   sl.registerLazySingleton(() => AddFavoriteUseCase(sl()));
   sl.registerLazySingleton(() => RemoveFavoriteUseCase(sl()));
