@@ -1,0 +1,19 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="126" height="102" viewBox="0 0 126 102" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+    <rect width="126" height="102" rx="16" fill="#2196F3"/>
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M110 67.6209C110 84.3988 88.9575 98 63 98C37.0426 98 16 84.3988 16 67.6209C16 51.303 60.4577 6.48742 62.8959 4.04183C62.9516 3.98606 63.0487 3.98606 63.1041 4.04183C65.5424 6.48742 110 51.303 110 67.6209ZM55.1653 88.2607C31.3152 84.8749 35.3964 67.7338 35.3964 67.7338C35.3964 67.7338 41.9091 78.0812 57.7135 81.433C73.5177 84.7847 92.617 79.8689 92.617 79.8689C92.617 79.8689 79.0153 91.6463 55.1653 88.2607Z"
+          fill="url(#paint0_linear_9_1291)"/>
+    <rect x="16" y="4" width="94" height="94" fill="url(#pattern0_9_1291)"/>
+    <defs>
+        <pattern id="pattern0_9_1291" patternContentUnits="objectBoundingBox" width="1" height="1">
+            <use xlink:href="#image0_9_1291" transform="translate(-0.0520833 -0.0520833) scale(0.0115017)"/>
+        </pattern>
+        <linearGradient id="paint0_linear_9_1291" x1="6.59163" y1="11.0489" x2="77.1275" y2="121.509"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="white"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+        </linearGradient>
+
+    </defs>
+</svg>

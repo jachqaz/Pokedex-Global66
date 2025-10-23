@@ -45,5 +45,7 @@
     "noFavoritesMessage": "You haven't marked any Pokémon as favorite",
     "noFavoritesDetails": "Click the heart icon on your favorite Pokémon and they will appear here.",
     "constructionTitle": "Coming soon!",
-    "constructionDetails": "We are working hard to bring you this section. Check back later to discover all the news."
+    "constructionDetails": "We are working hard to bring you this section. Check back later to discover all the news.",
+    "emptyTitle": "No Pokémon found",
+    "emptyContent": "Try other search filters"
 }

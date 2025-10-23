@@ -45,5 +45,8 @@
     "noFavoritesMessage": "No has marcado ningún Pokémon como favorito",
     "noFavoritesDetails": "Haz clic en el icono de corazón de tus Pokémon favoritos y aparecerán aquí.",
     "constructionTitle": "¡Muy pronto disponible!",
-    "constructionDetails": "Estamos trabajando duro para traerte esta sección. Vuelve más adelante para descubrir todas las novedades."
+    "constructionDetails": "Estamos trabajando duro para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.",
+    "emptyTitle": "No se encontraron Pokémon",
+    "emptyContent": "Intenta con otros filtros de búsqueda"
+
 }

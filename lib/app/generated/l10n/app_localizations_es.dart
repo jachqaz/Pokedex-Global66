@@ -153,4 +153,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get constructionDetails =>
       'Estamos trabajando duro para traerte esta sección. Vuelve más adelante para descubrir todas las novedades.';
+
+  @override
+  String get emptyTitle => 'No se encontraron Pokémon';
+
+  @override
+  String get emptyContent => 'Intenta con otros filtros de búsqueda';
 }

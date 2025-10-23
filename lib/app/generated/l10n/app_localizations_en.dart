@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -152,4 +153,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get constructionDetails =>
       'We are working hard to bring you this section. Check back later to discover all the news.';
+
+  @override
+  String get emptyTitle => 'No Pokémon found';
+
+  @override
+  String get emptyContent => 'Try other search filters';
 }

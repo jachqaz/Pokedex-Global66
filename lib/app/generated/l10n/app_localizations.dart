@@ -373,6 +373,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We are working hard to bring you this section. Check back later to discover all the news.'**
   String get constructionDetails;
+
+  /// No description provided for @emptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No Pokémon found'**
+  String get emptyTitle;
+
+  /// No description provided for @emptyContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Try other search filters'**
+  String get emptyContent;
 }
 
 class _AppLocalizationsDelegate

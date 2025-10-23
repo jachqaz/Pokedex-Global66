@@ -151,14 +151,14 @@ flutter_gen:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/images/png/splash.png
+  image: assets/images/svg/loader.svg
   android: true
   ios: true
   web: false
   android_gravity: center
   ios_content_mode: center
   android_12:
-    image: assets/images/png/splash.png
+    image: assets/images/svg/loader.svg
     color: "#FFFFFF"
     icon_background_color: "#FFFFFF"
     android_gravity: center
