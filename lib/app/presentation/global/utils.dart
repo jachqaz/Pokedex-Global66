@@ -3,90 +3,131 @@ import 'package:flutter_svg/svg.dart';
 import '../../domain/models/pokemon/pokemon.dart';
 import '../../generated/assets.gen.dart';
 
-SvgPicture getAssetForType({Pokemon? pokemon, String? type}) {
+SvgPicture getAssetForType({Pokemon? pokemon, String? type, String? property}) {
   String? compareType = type?.toLowerCase().trim() ??
-      pokemon?.types?.first?.type?.name?.toLowerCase().trim();
+      pokemon?.types?.first?.type?.name?.toLowerCase().trim() ??
+      property;
   switch (compareType) {
     case 'normal':
-      return type != null
-          ? Assets.images.svg.types.normal.svg()
-          : Assets.images.svg.cards.cardNormal.svg();
+      return property != null
+          ? Assets.images.svg.properties.normal.svg()
+          : type != null
+              ? Assets.images.svg.types.normal.svg()
+              : Assets.images.svg.cards.cardNormal.svg();
     case 'fire':
-      return type != null
-          ? Assets.images.svg.types.fuego.svg()
+      return property != null
+          ? Assets.images.svg.properties.fire.svg()
+          : type != null
+              ? Assets.images.svg.types.fuego.svg()
           : Assets.images.svg.cards.cardFire.svg();
     case 'water':
-      return type != null
-          ? Assets.images.svg.types.agua.svg()
+      return property != null
+          ? Assets.images.svg.properties.water.svg()
+          : type != null
+              ? Assets.images.svg.types.agua.svg()
           : Assets.images.svg.cards.cardWater.svg();
     case 'grass':
-      return type != null
-          ? Assets.images.svg.types.planta.svg()
+      return property != null
+          ? Assets.images.svg.properties.grass.svg()
+          : type != null
+              ? Assets.images.svg.types.planta.svg()
           : Assets.images.svg.cards.cardGrass.svg();
     case 'electric':
-      return type != null
-          ? Assets.images.svg.types.electrico.svg()
+      return property != null
+          ? Assets.images.svg.properties.electric.svg()
+          : type != null
+              ? Assets.images.svg.types.electrico.svg()
           : Assets.images.svg.cards.cardElectric.svg();
     case 'ice':
-      return type != null
-          ? Assets.images.svg.types.hielo.svg()
+      return property != null
+          ? Assets.images.svg.properties.ice.svg()
+          : type != null
+              ? Assets.images.svg.types.hielo.svg()
           : Assets.images.svg.cards.cardIce.svg();
     case 'fighting':
-      return type != null
-          ? Assets.images.svg.types.lucha.svg()
+      return property != null
+          ? Assets.images.svg.properties.fighting.svg()
+          : type != null
+              ? Assets.images.svg.types.lucha.svg()
           : Assets.images.svg.cards.cardFighting.svg();
     case 'poison':
-      return type != null
-          ? Assets.images.svg.types.veneno.svg()
+      return property != null
+          ? Assets.images.svg.properties.poison.svg()
+          : type != null
+              ? Assets.images.svg.types.veneno.svg()
           : Assets.images.svg.cards.cardPoison.svg();
     case 'ground':
-      return type != null
-          ? Assets.images.svg.types.tierra.svg()
+      return property != null
+          ? Assets.images.svg.properties.ground.svg()
+          : type != null
+              ? Assets.images.svg.types.tierra.svg()
           : Assets.images.svg.cards.cardGround.svg();
     case 'flying':
-      return type != null
-          ? Assets.images.svg.types.volador.svg()
+      return property != null
+          ? Assets.images.svg.properties.flying.svg()
+          : type != null
+              ? Assets.images.svg.types.volador.svg()
           : Assets.images.svg.cards.cardFlying.svg();
     case 'psychic':
-      return type != null
-          ? Assets.images.svg.types.psQuico.svg()
+      return property != null
+          ? Assets.images.svg.properties.psychic.svg()
+          : type != null
+              ? Assets.images.svg.types.psQuico.svg()
           : Assets.images.svg.cards.cardPsychic.svg();
     case 'bug':
-      return type != null
-          ? Assets.images.svg.types.bicho.svg()
+      return property != null
+          ? Assets.images.svg.properties.bug.svg()
+          : type != null
+              ? Assets.images.svg.types.bicho.svg()
           : Assets.images.svg.cards.cardBug.svg();
     case 'rock':
-      return type != null
-          ? Assets.images.svg.types.roca.svg()
+      return property != null
+          ? Assets.images.svg.properties.rock.svg()
+          : type != null
+              ? Assets.images.svg.types.roca.svg()
           : Assets.images.svg.cards.cardRock.svg();
     case 'ghost':
-      return type != null
-          ? Assets.images.svg.types.fantasma.svg()
+      return property != null
+          ? Assets.images.svg.properties.ghost.svg()
+          : type != null
+              ? Assets.images.svg.types.fantasma.svg()
           : Assets.images.svg.cards.cardGhost.svg();
     case 'dragon':
-      return type != null
-          ? Assets.images.svg.types.dragon.svg()
+      return property != null
+          ? Assets.images.svg.properties.dragon.svg()
+          : type != null
+              ? Assets.images.svg.types.dragon.svg()
           : Assets.images.svg.cards.cardDragon.svg();
     case 'steel':
-      return type != null
-          ? Assets.images.svg.types.acero.svg()
+      return property != null
+          ? Assets.images.svg.properties.steel.svg()
+          : type != null
+              ? Assets.images.svg.types.acero.svg()
           : Assets.images.svg.cards.cardSteel.svg();
     case 'dark':
-      return type != null
-          ? Assets.images.svg.types.siniestro.svg()
+      return property != null
+          ? Assets.images.svg.properties.dark.svg()
+          : type != null
+              ? Assets.images.svg.types.siniestro.svg()
           : Assets.images.svg.cards.cardDark.svg();
     case 'fairy':
-      return type != null
-          ? Assets.images.svg.types.hada.svg()
+      return property != null
+          ? Assets.images.svg.properties.fairy.svg()
+          : type != null
+              ? Assets.images.svg.types.hada.svg()
           : Assets.images.svg.cards.cardFairy.svg();
     case 'stellar':
-      return type != null
-          ? Assets.images.svg.types.normal.svg()
+      return property != null
+          ? Assets.images.svg.properties.normal.svg()
+          : type != null
+              ? Assets.images.svg.types.normal.svg()
           : Assets.images.svg.cards.cardNormal.svg();
     case 'unknown':
     default:
-      return type != null
-          ? Assets.images.svg.types.normal.svg()
+      return property != null
+          ? Assets.images.svg.properties.normal.svg()
+          : type != null
+              ? Assets.images.svg.types.normal.svg()
           : Assets.images.svg.cards.cardNormal.svg();
   }
 }

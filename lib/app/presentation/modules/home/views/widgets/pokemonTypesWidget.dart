@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../domain/models/pokemon/pokemon.dart';
+import '../../../../../domain/models/type_detail/type_detail.dart';
 import '../../../../global/utils.dart';
 
 class PokemonTypesWidget extends StatelessWidget {
-  final Pokemon pokemon;
+  final List<TypeDetail?>? types;
 
-  const PokemonTypesWidget({super.key, required this.pokemon});
+  const PokemonTypesWidget({super.key, required this.types});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: pokemon.types!
-          .map((type) => Padding(
-                padding: const EdgeInsets.only(right: 4),
-                child: getAssetForType(type: type?.type?.name),
-              ))
-          .toList(),
+    return Wrap(
+      spacing: 4.0,
+      runSpacing: 8.0,
+      children:
+          types!.map((type) => getAssetForType(type: type?.name)).toList(),
     );
   }
 }

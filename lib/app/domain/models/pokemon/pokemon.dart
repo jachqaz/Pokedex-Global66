@@ -11,6 +11,7 @@ import '../species/species.dart';
 import '../sprites/sprites.dart';
 import '../stat/stat.dart';
 import '../type/pokemon_type.dart';
+import '../type_detail/type_detail.dart';
 
 part 'pokemon.freezed.dart';
 part 'pokemon.g.dart';
@@ -36,6 +37,8 @@ abstract class Pokemon with _$Pokemon {
     @required List<Stat?>? stats,
     @required List<PokemonType?>? types,
     @required int? weight,
+    @required String? flavorText,
+    @required List<TypeDetail?>? damageRelations,
   }) = _Pokemon;
 
   factory Pokemon.fromJson(Json json) => _$PokemonFromJson(json);

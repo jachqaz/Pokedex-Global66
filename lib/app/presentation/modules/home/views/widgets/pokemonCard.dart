@@ -57,7 +57,10 @@ class _PokemonCardState extends State<PokemonCard> {
                       style: AppTextStyles.poppinsSemiBold21,
                     ),
                     const SizedBox(height: 12),
-                    PokemonTypesWidget(pokemon: widget.pokemon)
+                    PokemonTypesWidget(
+                        types: widget.pokemon.types
+                            ?.map((type) => type?.type)
+                            .toList())
                   ],
                 ),
               ),

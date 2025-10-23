@@ -20,7 +20,8 @@ class PokedexView extends StatefulWidget {
   State<PokedexView> createState() => _PokedexViewState();
 }
 
-class _PokedexViewState extends State<PokedexView> {
+class _PokedexViewState extends State<PokedexView>
+    with SingleTickerProviderStateMixin {
   final TextEditingController _searchController = TextEditingController();
   List<Pokemon> _filteredPokemonList = [];
   List<String> _selectedTypes = [];
@@ -95,7 +96,15 @@ class _PokedexViewState extends State<PokedexView> {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         if (state.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+            child: RotationTransition(
+              turns: AnimationController(
+                duration: const Duration(seconds: 1),
+                vsync: this,
+              )..repeat(),
+              child: Assets.images.svg.loader.svg(),
+            ),
+          );
         }
 
         if (state.error != null) {
@@ -103,7 +112,13 @@ class _PokedexViewState extends State<PokedexView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Error: ${state.error}'),
+                TemplateWidget(
+                    image: Padding(
+                      padding: const EdgeInsets.only(bottom: 32),
+                      child: Assets.images.png.magikarp.image(),
+                    ),
+                    title: context.l10n.generalErrorMessage,
+                    details: context.l10n.generalErrorDetails),
                 ElevatedButton(
                   onPressed: () => context.read<HomeCubit>().loadPokemons(),
                   child: const Text('Retry'),

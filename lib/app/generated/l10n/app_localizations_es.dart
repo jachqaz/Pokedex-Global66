@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -158,4 +159,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get emptyContent => 'Intenta con otros filtros de búsqueda';
+
+  @override
+  String get weight => 'PESO';
+
+  @override
+  String get height => 'ALTURA';
+
+  @override
+  String get type => 'CATEGORÍA';
+
+  @override
+  String get skill => 'HABILIDAD';
+
+  @override
+  String get genere => 'GÉNERO';
+
+  @override
+  String get weakness => 'Debilidades';
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import '../../domain/models/pokemon/pokemon.dart';
@@ -36,11 +38,39 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
   Future<List<Pokemon>> getPokemonRange(int start, int end) async {
     try {
       final List<Pokemon> pokemons = [];
+      final systemLanguage = Platform.localeName.startsWith('es') ? 'es' : 'en';
 
       for (int i = start; i <= end; i++) {
         final pokemonResponse =
             await dio.get('https://pokeapi.co/api/v2/pokemon/$i');
-        final pokemon = Pokemon.fromJson(pokemonResponse.data);
+        final speciesResponse =
+            await dio.get('https://pokeapi.co/api/v2/pokemon-species/$i');
+
+        final flavorTextEntries =
+            speciesResponse.data['flavor_text_entries'] as List;
+        final flavorText = flavorTextEntries.firstWhere(
+          (entry) => entry['language']['name'] == systemLanguage,
+          orElse: () => flavorTextEntries.first,
+        )['flavor_text'] as String;
+
+        final types = pokemonResponse.data['types'] as List;
+        final List<Map<String, dynamic>> damageRelations = [];
+
+        for (final type in types) {
+          final typeUrl = type['type']['url'] as String;
+          final typeId = typeUrl.split('/').where((s) => s.isNotEmpty).last;
+          final typeResponse =
+              await dio.get('https://pokeapi.co/api/v2/type/$typeId');
+          final doubleDamageFrom = typeResponse.data['damage_relations']
+              ['double_damage_from'] as List;
+          damageRelations.addAll(doubleDamageFrom.cast<Map<String, dynamic>>());
+        }
+
+        final pokemonData = Map<String, dynamic>.from(pokemonResponse.data);
+        pokemonData['flavorText'] = flavorText;
+        pokemonData['damageRelations'] = damageRelations;
+
+        final pokemon = Pokemon.fromJson(pokemonData);
         pokemons.add(pokemon);
       }
 

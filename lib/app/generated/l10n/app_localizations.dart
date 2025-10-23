@@ -385,6 +385,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try other search filters'**
   String get emptyContent;
+
+  /// No description provided for @weight.
+  ///
+  /// In en, this message translates to:
+  /// **'WEIGH'**
+  String get weight;
+
+  /// No description provided for @height.
+  ///
+  /// In en, this message translates to:
+  /// **'HEIGHT'**
+  String get height;
+
+  /// No description provided for @type.
+  ///
+  /// In en, this message translates to:
+  /// **'TYPE'**
+  String get type;
+
+  /// No description provided for @skill.
+  ///
+  /// In en, this message translates to:
+  /// **'SKILL'**
+  String get skill;
+
+  /// No description provided for @genere.
+  ///
+  /// In en, this message translates to:
+  /// **'GENERE'**
+  String get genere;
+
+  /// No description provided for @weakness.
+  ///
+  /// In en, this message translates to:
+  /// **'Weakness'**
+  String get weakness;
 }
 
 class _AppLocalizationsDelegate

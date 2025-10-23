@@ -158,4 +158,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyContent => 'Try other search filters';
+
+  @override
+  String get weight => 'WEIGH';
+
+  @override
+  String get height => 'HEIGHT';
+
+  @override
+  String get type => 'TYPE';
+
+  @override
+  String get skill => 'SKILL';
+
+  @override
+  String get genere => 'GENERE';
+
+  @override
+  String get weakness => 'Weakness';
 }
