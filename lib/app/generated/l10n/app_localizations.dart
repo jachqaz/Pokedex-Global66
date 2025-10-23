@@ -421,6 +421,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Weakness'**
   String get weakness;
+
+  /// No description provided for @deleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteTitle;
+
+  /// No description provided for @deleteContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this favorite?'**
+  String get deleteContent;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
 }
 
 class _AppLocalizationsDelegate

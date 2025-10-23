@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
@@ -7,6 +8,8 @@ import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../global/extensions.dart';
 import '../../../../global/utils.dart';
+import '../../cubit/homeCubit.dart';
+import '../../state/homeState.dart';
 import 'pokemonTypesWidget.dart';
 
 class PokemonDetailView extends StatelessWidget {
@@ -50,10 +53,23 @@ class PokemonDetailView extends StatelessWidget {
                                   icon: const Icon(Icons.arrow_back,
                                       color: Colors.white, size: 28),
                                 ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.favorite_border,
-                                      color: Colors.white, size: 28),
+                                BlocBuilder<HomeCubit, HomeState>(
+                                  builder: (context, state) {
+                                    final isFav = state.favorites
+                                        .any((p) => p.id == pokemon.id);
+                                    return IconButton(
+                                      onPressed: () => context
+                                          .read<HomeCubit>()
+                                          .toggleFavorite(pokemon),
+                                      icon: Icon(
+                                        isFav
+                                            ? Icons.favorite
+                                            : Icons.favorite_border,
+                                        color: Colors.white,
+                                        size: 28,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),

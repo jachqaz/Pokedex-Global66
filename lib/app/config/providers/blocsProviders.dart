@@ -31,7 +31,13 @@ class BlocsProviders extends StatelessWidget {
             RouterSimpleCubit(context.watch<RouterSimpleCubit>().state),
       ),
       BlocProvider(
-        create: (context) => HomeCubit(di.sl()),
+        create: (context) => HomeCubit(
+          di.sl(),
+          di.sl(),
+          di.sl(),
+          di.sl(),
+          di.sl(),
+        ),
       ),
       BlocProvider(
         create: (context) => OnboardingCubit(OnboardingState()),
@@ -42,7 +48,14 @@ class BlocsProviders extends StatelessWidget {
   List<SingleChildWidget> get buildChangeNotifierProvider {
     return [
       ChangeNotifierProvider<HomeController>(
-        create: (context) => HomeController(HomeState(), di.sl()),
+        create: (context) => HomeController(
+          HomeState(),
+          di.sl(),
+          di.sl(),
+          di.sl(),
+          di.sl(),
+          di.sl(),
+        ),
       ),
       ChangeNotifierProvider<OnboardingController>(
         create: (context) => OnboardingController(OnboardingState()),

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -176,4 +177,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get weakness => 'Weakness';
+
+  @override
+  String get deleteTitle => 'Delete';
+
+  @override
+  String get deleteContent => 'Are you sure you want to delete this favorite?';
+
+  @override
+  String get confirm => 'Confirm';
 }

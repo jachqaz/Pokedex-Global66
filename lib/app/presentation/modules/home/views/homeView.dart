@@ -25,6 +25,10 @@ class _HomeViewState extends State<HomeView> {
       create: (context) => HomeController(
         HomeState(),
         di.sl(),
+        di.sl(),
+        di.sl(),
+        di.sl(),
+        di.sl(),
       )..init(),
       child: Scaffold(
         body: BlocBuilder<HomeCubit, Object>(

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
 import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../generated/assets.gen.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../cubit/homeCubit.dart';
+import '../../state/homeState.dart';
 import 'pokemonCard.dart';
 import 'templateWidget.dart';
 
@@ -16,13 +19,13 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  List<Pokemon> _favoritePokemons = [];
-
   @override
   Widget build(BuildContext context) {
-    return _favoritePokemons.isEmpty
-        ? _buildEmptyState()
-        : _buildFavoritesList();
+    return BlocBuilder<HomeCubit, HomeState>(builder: (context, state) {
+      return state.favorites.isEmpty
+          ? _buildEmptyState()
+          : _buildFavoritesList(state.favorites);
+    });
   }
 
   Widget _buildEmptyState() {
@@ -35,7 +38,7 @@ class _FavoritesViewState extends State<FavoritesView> {
         details: context.l10n.noFavoritesDetails);
   }
 
-  Widget _buildFavoritesList() {
+  Widget _buildFavoritesList(List<Pokemon> favorites) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
@@ -44,10 +47,10 @@ class _FavoritesViewState extends State<FavoritesView> {
           const SizedBox(height: 16),
           Expanded(
             child: ListView.builder(
-              itemCount: _favoritePokemons.length,
+              itemCount: favorites.length,
               itemBuilder: (context, index) {
-                final pokemon = _favoritePokemons[index];
-                return _buildFavoriteItem(pokemon, index);
+                final pokemon = favorites[index];
+                return _buildFavoriteItem(pokemon);
               },
             ),
           ),
@@ -56,7 +59,7 @@ class _FavoritesViewState extends State<FavoritesView> {
     );
   }
 
-  Widget _buildFavoriteItem(Pokemon pokemon, int index) {
+  Widget _buildFavoriteItem(Pokemon pokemon) {
     return Dismissible(
       key: Key(pokemon.id.toString()),
       direction: DismissDirection.endToStart,
@@ -67,7 +70,7 @@ class _FavoritesViewState extends State<FavoritesView> {
             context, pokemon.name.toString());
       },
       onDismissed: (direction) {
-        _removeFavorite(index);
+        context.read<HomeCubit>().toggleFavorite(pokemon);
       },
       child: PokemonCard(pokemon: pokemon),
     );
@@ -101,11 +104,11 @@ class _FavoritesViewState extends State<FavoritesView> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: Text(
-                context.l10n.filterCancelButton,
+                context.l10n.deleteTitle,
                 style: AppTextStyles.poppinsMedium18,
               ),
               content: Text(
-                context.l10n.filterCancelButton,
+                context.l10n.deleteContent,
                 style: AppTextStyles.poppinsRegular14,
               ),
               actions: [
@@ -125,7 +128,7 @@ class _FavoritesViewState extends State<FavoritesView> {
                     foregroundColor: Colors.white,
                   ),
                   child: Text(
-                    context.l10n.filterCancelButton,
+                    context.l10n.confirm,
                     style: AppTextStyles.poppinsMedium14,
                   ),
                 ),
@@ -136,19 +139,7 @@ class _FavoritesViewState extends State<FavoritesView> {
         false;
   }
 
-  void _removeFavorite(int index) {
-    setState(() {
-      _favoritePokemons.removeAt(index);
-    });
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(context.l10n.filterCancelButton),
-        backgroundColor: AppColors.buttonPrimary,
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
 
   Color _getTypeColor(String type) {
     switch (type.toLowerCase()) {

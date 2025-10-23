@@ -53,5 +53,8 @@
   "type": "CATEGORÍA",
   "skill": "HABILIDAD",
   "genere": "GÉNERO",
-  "weakness": "Debilidades"
+  "weakness": "Debilidades",
+  "deleteTitle": "Eliminar",
+  "deleteContent": "¿Estas seguro de eliminar este favorito?",
+  "confirm": "Confirmar"
 }

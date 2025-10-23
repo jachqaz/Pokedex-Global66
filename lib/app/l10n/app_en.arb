@@ -53,5 +53,8 @@
   "type": "TYPE",
   "skill": "SKILL",
   "genere": "GENERE",
-  "weakness": "Weakness"
+  "weakness": "Weakness",
+  "deleteTitle": "Delete",
+  "deleteContent": "Are you sure you want to delete this favorite?",
+  "confirm": "Confirm"
 }

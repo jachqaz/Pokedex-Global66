@@ -177,4 +177,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get weakness => 'Debilidades';
+
+  @override
+  String get deleteTitle => 'Eliminar';
+
+  @override
+  String get deleteContent => '¿Estas seguro de eliminar este favorito?';
+
+  @override
+  String get confirm => 'Confirmar';
 }

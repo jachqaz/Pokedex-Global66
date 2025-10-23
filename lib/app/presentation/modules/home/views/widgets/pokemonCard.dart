@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../config/theme/app_colors.dart';
 import '../../../../../config/theme/app_text_styles.dart';
@@ -7,6 +8,8 @@ import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../../generated/assets.gen.dart';
 import '../../../../global/extensions.dart';
 import '../../../../global/utils.dart';
+import '../../cubit/homeCubit.dart';
+import '../../state/homeState.dart';
 import 'pokemonDetailView.dart';
 import 'pokemonTypesWidget.dart';
 
@@ -93,7 +96,19 @@ class _PokemonCardState extends State<PokemonCard> {
         Positioned(
           top: 8,
           right: 8,
-          child: Assets.images.svg.icons.favorites.noFavorite.svg(),
+          child: BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              final isFav =
+                  state.favorites.any((p) => p.id == widget.pokemon.id);
+              return GestureDetector(
+                onTap: () =>
+                    context.read<HomeCubit>().toggleFavorite(widget.pokemon),
+                child: isFav
+                    ? Assets.images.svg.icons.favorites.favorite.svg()
+                    : Assets.images.svg.icons.favorites.noFavorite.svg(),
+              );
+            },
+          ),
         ),
       ],
     );
